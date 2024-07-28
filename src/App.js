@@ -1,7 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
 import Home from './pages/Home';
 import MyRecipes from './pages/MyRecipes';
 import Favorites from './pages/Favorites';
@@ -9,39 +7,42 @@ import AddRecipe from './components/Recipes/AddRecipe';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
 import Dashboard from "./components/Dashboards/Dashboard";
+
 import './index.css';
-import { AuthProvider, useAuth } from './contexts/AuthContext'; // Import the provider and hook
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import Layout from './components/Layout/Layout'; // Import Layout component
 
 function App() {
   return (
     <AuthProvider>
       <Router>
-        <AuthRoutes />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="my-recipes" element={<MyRecipes />} />
+            <Route path="favorites" element={<Favorites />} />
+            <Route path="add-recipe" element={<ProtectedRoute component={<AddRecipe />} />} />
+            <Route path="login" element={<PublicRoute component={<Login />} />} />
+            <Route path="register" element={<PublicRoute component={<Register />} />} />
+            <Route path="dashboard" element={<ProtectedRoute component={<Dashboard />} />} />
+            
+          </Route>
+        </Routes>
       </Router>
     </AuthProvider>
   );
 }
 
-const AuthRoutes = () => {
-  const { user } = useAuth(); // Access authentication state
+// Helper component to handle protected routes
+const ProtectedRoute = ({ component }) => {
+  const { user } = useAuth();
+  return user ? component : <Navigate to="/login" />;
+};
 
-  return (
-    <div className="flex flex-col min-h-screen">
-      {user && <Header />} {/* Conditionally render Header if user is authenticated */}
-      <main className="flex-grow container mx-auto px-4">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/my-recipes" element={<MyRecipes />} />
-          <Route path="/favorites" element={<Favorites />} />
-          <Route path="/add-recipe" element={user ? <AddRecipe /> : <Navigate to="/login" />} />
-          <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
-          <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
-          <Route path="/dashboard" element={user ? <Dashboard /> : <Navigate to="/login" />} />
-        </Routes>
-      </main>
-      <Footer />
-    </div>
-  );
+// Helper component to handle public routes
+const PublicRoute = ({ component }) => {
+  const { user } = useAuth();
+  return !user ? component : <Navigate to="/" />;
 };
 
 export default App;
