@@ -26,13 +26,13 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
-      <div className="bg-white p-12 rounded-xl shadow-xl w-full max-w-md border border-gray-200">
-        <h2 className="text-3xl font-extrabold mb-8 text-center text-gray-800">Login</h2>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4">
+      <div className="bg-white p-8 md:p-12 rounded-xl shadow-xl w-full max-w-md border border-gray-200">
+        <h2 className="text-2xl md:text-3xl font-extrabold mb-6 text-center text-gray-800">Login</h2>
         {error && <p className="text-red-600 text-center mb-4 font-semibold">{error}</p>} {/* Display error message if there is one */}
         <form onSubmit={handleLogin}>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-lg font-medium mb-2" htmlFor="email">
+          <div className="mb-4 md:mb-6">
+            <label className="block text-gray-700 text-base md:text-lg font-medium mb-2" htmlFor="email">
               Email
             </label>
             <input
@@ -42,11 +42,11 @@ const Login = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Email"
               required
-              className="w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
             />
           </div>
-          <div className="mb-8">
-            <label className="block text-gray-700 text-lg font-medium mb-2" htmlFor="password">
+          <div className="mb-6 md:mb-8">
+            <label className="block text-gray-700 text-base md:text-lg font-medium mb-2" htmlFor="password">
               Password
             </label>
             <input
@@ -56,13 +56,13 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
               required
-              className="w-full px-5 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
             />
           </div>
           <button
             type="submit"
             disabled={loading}
-            className="w-full px-5 py-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out disabled:opacity-50"
+            className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out disabled:opacity-50"
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>

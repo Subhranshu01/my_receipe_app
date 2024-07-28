@@ -116,11 +116,11 @@ const Home = () => {
   }
 
   return (
-    <div className="relative bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen p-6">
+    <div className="relative bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen p-4 md:p-6 lg:p-8">
       <div className="absolute inset-0 bg-opacity-10 bg-gray-800"></div>
       <div className="relative z-10">
-        <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">Recipes</h1>
-        <div className="mb-8 flex flex-col items-center space-y-4">
+        <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6 md:mb-8">Recipes</h1>
+        <div className="mb-6 md:mb-8 flex flex-col items-center space-y-4">
           <input
             type="text"
             placeholder="Search by name..."
@@ -134,6 +134,8 @@ const Home = () => {
             className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-indigo-500 focus:ring-indigo-500 overflow-y-scroll max-h-60"
           >
             <option value="">All Categories</option>
+            {/* Add category options here */}
+            {/* Example options */}
             <option value="Appetizer">Appetizer</option>
             <option value="Main Course">Main Course</option>
             <option value="Dessert">Dessert</option>
@@ -153,17 +155,25 @@ const Home = () => {
             <option value="Sandwich">Sandwich</option>
           </select>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
           {filteredRecipes.length > 0 ? (
             filteredRecipes.map(recipe => (
-              <div key={recipe.id} className="relative bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
-                <h2 className="text-xl font-semibold text-gray-800">{recipe.title}</h2>
+              <div key={recipe.id} className="relative bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
+                <div className="mb-4">
+                  <h2 className="text-lg md:text-xl font-semibold text-gray-800 truncate">{recipe.title}</h2>
+                </div>
                 {recipe.imageUrl && (
-                  <img src={recipe.imageUrl} alt={recipe.title} className="w-full h-48 object-cover mt-4 mb-2 rounded-md" />
+                  <div className="w-full h-64 relative overflow-hidden rounded-md">
+                    <img
+                      src={recipe.imageUrl}
+                      alt={recipe.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
                 )}
-                <p className="mt-2 text-gray-700"><strong>Ingredients:</strong> {recipe.ingredients}</p>
-                <p className="mt-2 text-gray-700"><strong>Instructions:</strong> {recipe.instructions}</p>
-                <p className="mt-2 text-gray-700"><strong>Category:</strong> {recipe.category}</p>
+                <p className="mt-2 text-gray-700 text-sm md:text-base"><strong>Ingredients:</strong> {recipe.ingredients}</p>
+                <p className="mt-2 text-gray-700 text-sm md:text-base"><strong>Instructions:</strong> {recipe.instructions}</p>
+                <p className="mt-2 text-gray-700 text-sm md:text-base"><strong>Category:</strong> {recipe.category}</p>
                 <svg
                   onClick={() => toggleFavorite(recipe.id)}
                   className={`absolute top-4 right-4 w-6 h-6 cursor-pointer ${favorites.includes(recipe.id) ? 'text-red-600' : 'text-gray-400'} fill-current`}
