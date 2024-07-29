@@ -1,78 +1,84 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
-import { signInWithEmailAndPassword } from 'firebase/auth'; // Import from 'firebase/auth'
-import { auth } from '../../configuration'; // Import auth from services/firebase
+import { useNavigate } from 'react-router-dom';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../configuration'; // Update path as needed
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null); // State for storing error messages
-  const [loading, setLoading] = useState(false); // State for loading status
-  const navigate = useNavigate(); // Hook for navigation
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true when login starts
-    setError(null); // Reset error state before new login attempt
+    setLoading(true);
+    setError(null);
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate('/'); // Redirect to a protected route after successful login
     } catch (error) {
-      setError('Failed to login. Please check your email and password.'); // Set error message
+      setError('Failed to login. Please check your email and password.');
     } finally {
-      setLoading(false); // Set loading to false after login attempt
+      setLoading(false);
     }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 p-4">
-      <div className="bg-white p-8 md:p-12 rounded-xl shadow-xl w-full max-w-md border border-gray-200">
-        <h2 className="text-2xl md:text-3xl font-extrabold mb-6 text-center text-gray-800">Login</h2>
-        {error && <p className="text-red-600 text-center mb-4 font-semibold">{error}</p>} {/* Display error message if there is one */}
-        <form onSubmit={handleLogin}>
-          <div className="mb-4 md:mb-6">
-            <label className="block text-gray-700 text-base md:text-lg font-medium mb-2" htmlFor="email">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
-            />
-          </div>
-          <div className="mb-6 md:mb-8">
-            <label className="block text-gray-700 text-base md:text-lg font-medium mb-2" htmlFor="password">
-              Password
-            </label>
-            <input
-              id="password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-lg hover:from-blue-600 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out disabled:opacity-50"
-          >
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
-        </form>
-        <p className="mt-6 text-center text-gray-600">
-          Don't have an account?{' '}
-          <a href="/register" className="text-blue-500 hover:underline">
-            Register here
-          </a>
-        </p>
+    <div
+      className="relative min-h-screen bg-cover bg-center overflow-hidden"
+      style={{ backgroundImage: 'url("/images/background.jpg")' }} // Absolute path to image
+    >
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Optional overlay for better text visibility */}
+      <div className="relative flex items-center justify-center min-h-screen p-4">
+        <div className="bg-white bg-opacity-90 p-6 md:p-8 lg:p-10 rounded-xl shadow-xl w-full max-w-md border border-gray-200">
+          <h2 className="text-2xl md:text-3xl font-extrabold mb-4 md:mb-6 text-center text-gray-800">Login</h2>
+          {error && <p className="text-red-600 text-center mb-4 font-semibold">{error}</p>}
+          <form onSubmit={handleLogin}>
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm md:text-base font-medium mb-2" htmlFor="email">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300 ease-in-out"
+              />
+            </div>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm md:text-base font-medium mb-2" htmlFor="password">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                required
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300 ease-in-out"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full px-4 py-2 bg-gradient-to-r from-teal-500 to-teal-600 text-white rounded-lg shadow-lg hover:from-teal-600 hover:to-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 transition duration-300 ease-in-out disabled:opacity-50"
+            >
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+          <p className="mt-6 text-center text-gray-600 text-sm md:text-base">
+            Don't have an account?{' '}
+            <a href="/register" className="text-teal-500 hover:underline">
+              Register here
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );

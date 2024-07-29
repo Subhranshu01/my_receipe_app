@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {user && <Header />} {/* Conditionally render Header if user is authenticated */}
-      <main className="flex-grow container mx-auto px-4">
+      <main className="flex-grow container mx-auto ">
         <Outlet /> {/* Render child routes */}
       </main>
       <Footer /> {/* Always render Footer */}
