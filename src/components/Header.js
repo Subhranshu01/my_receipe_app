@@ -28,10 +28,10 @@ const Header = () => {
         <nav className="hidden md:flex space-x-4">
           <Link to="/" className="hover:bg-blue-700 px-3 py-2 rounded">Home</Link>
           <Link to="/my-recipes" className="hover:bg-blue-700 px-3 py-2 rounded">My Recipes</Link>
-          <Link to="/favorites" className="hover:bg-blue-700 px-3 py-2 rounded">Favorites</Link>
-          <Link to="/add-recipe" className="hover:bg-blue-700 px-3 py-2 rounded">Add Recipe</Link>
+          <Link to="/favorites" className="hover:bg-pink-700 px-3 py-2 rounded">Favorites</Link>
+          <Link to="/add-recipe" className="hover:bg-green-700 px-3 py-2 rounded">Add Recipe</Link>
           {user ? (
-            <Link to="/" onClick={handleLogout} className="hover:bg-blue-700 px-3 py-2 rounded">Logout</Link>
+            <Link to="/" onClick={handleLogout} className="hover:bg-red-600 px-3 py-2 rounded">Logout</Link>
           ) : (
             <Link to="/login" className="hover:bg-blue-700 px-3 py-2 rounded">Login</Link>
           )}

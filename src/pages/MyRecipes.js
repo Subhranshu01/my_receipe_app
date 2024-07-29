@@ -79,11 +79,21 @@ const MyRecipes = () => {
     );
   }
 
+  const backgroundImage = "url('/images/hm.jpg')"; // Update the path to your background image
+
   return (
-    <div className="relative bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen p-6">
-      <div className="absolute inset-0 bg-opacity-10 bg-gray-800"></div>
+    <div
+      className="relative min-h-screen p-6"
+      style={{
+        backgroundImage: backgroundImage,
+        
+        backgroundPosition: 'center',
+        
+      }}
+    >
+      <div className="absolute inset-0 bg-opacity-30 bg-gray-800"></div>
       <div className="relative z-10">
-        <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">My Recipes</h1>
+        <h1 className="text-3xl font-bold text-center text-white mb-8">My Recipes</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {recipes.length > 0 ? (
             recipes.map(recipe => (
@@ -101,7 +111,7 @@ const MyRecipes = () => {
               </div>
             ))
           ) : (
-            <p className="text-center text-gray-600">No recipes found. Start adding some recipes to see them here.</p>
+            <p className="text-center text-white font-bold">No recipes found. Start adding some recipes to see them here.</p>
           )}
         </div>
       </div>

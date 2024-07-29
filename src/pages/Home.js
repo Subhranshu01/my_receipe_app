@@ -99,6 +99,8 @@ const Home = () => {
     return matchesText && matchesCategory;
   });
 
+  const backgroundImage = "url('/images/hm.jpg')"; // Update the path to your background image
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-green-400 to-blue-500">
@@ -116,7 +118,10 @@ const Home = () => {
   }
 
   return (
-    <div className="relative bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen p-4 md:p-6 lg:p-8">
+    <div
+      className="relative min-h-screen p-4 md:p-6 lg:p-8"
+      style={{ backgroundImage: backgroundImage, backgroundPosition: 'center' }}
+    >
       <div className="absolute inset-0 bg-opacity-10 bg-gray-800"></div>
       <div className="relative z-10">
         <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6 md:mb-8">Recipes</h1>

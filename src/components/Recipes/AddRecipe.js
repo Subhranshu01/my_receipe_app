@@ -85,8 +85,18 @@ const AddRecipe = () => {
     }
   };
 
+  const backgroundImage = "url('/images/hm.jpg)"; // Update the path to your background image
+
   return (
-    <div className="flex flex-col items-center p-6 bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen">
+    <div
+      className="flex flex-col items-center p-6 min-h-screen"
+      style={{
+        backgroundImage: backgroundImage,
+       
+        backgroundPosition: 'center'
+         // Optional: This makes the background fixed during scroll
+      }}
+    >
       <h1 className="text-3xl font-extrabold mb-6 text-gray-900">Add Recipe</h1>
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md space-y-6">
         <div className="space-y-2">

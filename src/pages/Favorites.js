@@ -65,11 +65,21 @@ const FavoriteRecipes = () => {
     );
   }
 
+  const backgroundImage = "url('/images/hm.jpg')"; // Update the path to your background image
+
   return (
-    <div className="relative bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 min-h-screen p-6">
-      <div className="absolute inset-0 bg-opacity-10 bg-gray-800"></div>
+    <div
+      className="relative min-h-screen p-6"
+      style={{
+        backgroundImage: backgroundImage,
+       
+        backgroundPosition: 'center',
+         // Optional: This makes the background fixed during scroll
+      }}
+    >
+      <div className="absolute inset-0 bg-opacity-30 bg-gray-800"></div>
       <div className="relative z-10">
-        <h1 className="text-3xl font-bold text-center text-gray-900 mb-8">Favorite Recipes</h1>
+        <h1 className="text-3xl font-bold text-center text-green-100 mb-8">Favorite Recipes</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {favorites.length > 0 ? (
             favorites.map(recipe => (
@@ -84,7 +94,7 @@ const FavoriteRecipes = () => {
               </div>
             ))
           ) : (
-            <p className="text-center text-gray-600">You have no favorite recipes yet.</p>
+            <p className="text-center  text-green-100 font-bold text-2xl">You have no favorite recipes yet.</p>
           )}
         </div>
       </div>
