@@ -6,7 +6,7 @@ import Favorites from './pages/Favorites';
 import AddRecipe from './components/Recipes/AddRecipe';
 import Login from './components/Auth/Login';
 import Register from './components/Auth/Register';
-import Dashboard from "./components/Dashboards/Dashboard";
+
 
 import './index.css';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
@@ -24,7 +24,7 @@ function App() {
             <Route path="add-recipe" element={<ProtectedRoute component={<AddRecipe />} />} />
             <Route path="login" element={<PublicRoute component={<Login />} />} />
             <Route path="register" element={<PublicRoute component={<Register />} />} />
-            <Route path="dashboard" element={<ProtectedRoute component={<Dashboard />} />} />
+            
             
           </Route>
         </Routes>

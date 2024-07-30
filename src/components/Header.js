@@ -21,15 +21,20 @@ const Header = () => {
     }
   };
 
+  const handleNavClick = (path) => {
+    setMobileMenuOpen(false);
+    navigate(path);
+  };
+
   return (
     <header className="bg-blue-600 text-white p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <h1 className="text-2xl font-bold">Recipe Sharing App</h1>
         <nav className="hidden md:flex space-x-4">
-          <Link to="/" className="hover:bg-blue-700 px-3 py-2 rounded">Home</Link>
-          <Link to="/my-recipes" className="hover:bg-blue-700 px-3 py-2 rounded">My Recipes</Link>
-          <Link to="/favorites" className="hover:bg-pink-700 px-3 py-2 rounded">Favorites</Link>
-          <Link to="/add-recipe" className="hover:bg-green-700 px-3 py-2 rounded">Add Recipe</Link>
+          <Link to="/" className="hover:bg-blue-700 px-3 py-2 rounded" onClick={() => handleNavClick('/')}>Home</Link>
+          <Link to="/my-recipes" className="hover:bg-blue-700 px-3 py-2 rounded" onClick={() => handleNavClick('/my-recipes')}>My Recipes</Link>
+          <Link to="/favorites" className="hover:bg-pink-700 px-3 py-2 rounded" onClick={() => handleNavClick('/favorites')}>Favorites</Link>
+          <Link to="/add-recipe" className="hover:bg-green-700 px-3 py-2 rounded" onClick={() => handleNavClick('/add-recipe')}>Add Recipe</Link>
           {user ? (
             <Link to="/" onClick={handleLogout} className="hover:bg-red-600 px-3 py-2 rounded">Logout</Link>
           ) : (
@@ -51,10 +56,10 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="md:hidden">
           <nav className="flex flex-col space-y-2 mt-4">
-            <Link to="/" className="hover:bg-blue-700 px-3 py-2 rounded">Home</Link>
-            <Link to="/my-recipes" className="hover:bg-blue-700 px-3 py-2 rounded">My Recipes</Link>
-            <Link to="/favorites" className="hover:bg-blue-700 px-3 py-2 rounded">Favorites</Link>
-            <Link to="/add-recipe" className="hover:bg-blue-700 px-3 py-2 rounded">Add Recipe</Link>
+            <Link to="/" className="hover:bg-blue-700 px-3 py-2 rounded" onClick={() => handleNavClick('/')}>Home</Link>
+            <Link to="/my-recipes" className="hover:bg-blue-700 px-3 py-2 rounded" onClick={() => handleNavClick('/my-recipes')}>My Recipes</Link>
+            <Link to="/favorites" className="hover:bg-blue-700 px-3 py-2 rounded" onClick={() => handleNavClick('/favorites')}>Favorites</Link>
+            <Link to="/add-recipe" className="hover:bg-blue-700 px-3 py-2 rounded" onClick={() => handleNavClick('/add-recipe')}>Add Recipe</Link>
             {user ? (
               <Link to="/" onClick={handleLogout} className="hover:bg-blue-700 px-3 py-2 rounded">Logout</Link>
             ) : (

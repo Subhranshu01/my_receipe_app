@@ -41,7 +41,9 @@ const AddRecipe = () => {
     }
 
     try {
-      const userId = auth.currentUser?.uid;
+      const user = auth.currentUser;
+      const userId = user?.uid;
+      const userEmail = user?.email;
       if (!userId) {
         throw new Error('User not authenticated');
       }
@@ -63,6 +65,7 @@ const AddRecipe = () => {
         instructions,
         category,
         userId,
+        userEmail, // Store the user's email
         createdAt: new Date().toISOString(), // Use ISO string format for date
         imageUrl, // Store the image URL
       });
@@ -85,16 +88,15 @@ const AddRecipe = () => {
     }
   };
 
-  const backgroundImage = "url('/images/hm.jpg)"; // Update the path to your background image
+  const backgroundImage = "url('/images/hm.jpg')"; // Update the path to your background image
 
   return (
     <div
       className="flex flex-col items-center p-6 min-h-screen"
       style={{
         backgroundImage: backgroundImage,
-       
+        backgroundSize: 'cover',
         backgroundPosition: 'center'
-         // Optional: This makes the background fixed during scroll
       }}
     >
       <h1 className="text-3xl font-extrabold mb-6 text-gray-900">Add Recipe</h1>

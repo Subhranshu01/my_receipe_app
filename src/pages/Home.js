@@ -166,6 +166,9 @@ const Home = () => {
               <div key={recipe.id} className="relative bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 ease-in-out">
                 <div className="mb-4">
                   <h2 className="text-lg md:text-xl font-semibold text-gray-800 truncate">{recipe.title}</h2>
+                  <p className="text-sm md:text-base text-gray-500">
+                    Submitted by: {recipe.userEmail.split('@')[0]}
+                  </p>
                 </div>
                 {recipe.imageUrl && (
                   <div className="w-full h-64 relative overflow-hidden rounded-md">

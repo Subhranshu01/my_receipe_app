@@ -30,11 +30,13 @@ const MyRecipes = () => {
   useEffect(() => {
     const fetchRecipes = async () => {
       if (userId) {
+        console.log('User ID:', userId); // Debugging line
         try {
           const recipesRef = ref(database, 'recipes');
-          const q = query(recipesRef, orderByChild('createdBy'), equalTo(userId));
+          const q = query(recipesRef, orderByChild('userId'), equalTo(userId));
           const snapshot = await get(q);
-
+          
+          console.log('Snapshot exists:', snapshot.exists()); // Debugging line
           if (snapshot.exists()) {
             const recipesList = [];
             snapshot.forEach(childSnapshot => {
@@ -45,6 +47,7 @@ const MyRecipes = () => {
             });
             // Sort recipes by createdAt in descending order
             recipesList.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+            console.log('Recipes:', recipesList); // Debugging line
             setRecipes(recipesList);
           } else {
             setRecipes([]);
@@ -59,6 +62,7 @@ const MyRecipes = () => {
         setLoading(false);
       }
     };
+    ;
 
     fetchRecipes();
   }, [userId]);
@@ -86,9 +90,7 @@ const MyRecipes = () => {
       className="relative min-h-screen p-6"
       style={{
         backgroundImage: backgroundImage,
-        
         backgroundPosition: 'center',
-        
       }}
     >
       <div className="absolute inset-0 bg-opacity-30 bg-gray-800"></div>
